@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/grndhit.mp3-fdf6d5c4968a60da6bb7df837a05527d.mp3str"
+
+[deps]
+
+source_file="res://sound/grndhit.mp3"
+dest_files=[ "res://.import/grndhit.mp3-fdf6d5c4968a60da6bb7df837a05527d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

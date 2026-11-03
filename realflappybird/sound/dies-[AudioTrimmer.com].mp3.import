@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dies-[AudioTrimmer.com].mp3-c48e18ae32541468ef72e8afd49c7484.mp3str"
+
+[deps]
+
+source_file="res://sound/dies-[AudioTrimmer.com].mp3"
+dest_files=[ "res://.import/dies-[AudioTrimmer.com].mp3-c48e18ae32541468ef72e8afd49c7484.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

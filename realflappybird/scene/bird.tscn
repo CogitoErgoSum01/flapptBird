@@ -1,0 +1,117 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://sprite/7p2dx234dl291.png" type="Texture" id=1]
+[ext_resource path="res://sprite/Mobile_-_Flappy_Bird_-_Version_12_Sprites.webp" type="Texture" id=2]
+[ext_resource path="res://script/bird.gd" type="Script" id=3]
+[ext_resource path="res://sound/swoosh.mp3" type="AudioStream" id=4]
+[ext_resource path="res://sound/dies-[AudioTrimmer.com].mp3" type="AudioStream" id=5]
+[ext_resource path="res://sound/grndhit.mp3" type="AudioStream" id=6]
+[ext_resource path="res://sound/point.mp3" type="AudioStream" id=7]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 969, 56, 51 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 56, 969, 56, 51 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 112, 969, 56, 51 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 483, 28, 23 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 28, 483, 28, 23 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 56, 483, 28, 23 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 14.0357
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 33, 460 )
+
+[sub_resource type="CircleShape2D" id=17]
+radius = 13.1529
+
+[node name="bird" type="KinematicBody2D" groups=["bird"]]
+position = Vector2( 39, 265 )
+z_index = 7
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -8, 10 )
+scale = Vector2( 2.25028, 2.2695 )
+frames = SubResource( 4 )
+animation = "up"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -15, 15 )
+shape = SubResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="." groups=["pipek"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -852, -18 )
+shape = SubResource( 12 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="hitbox"]
+position = Vector2( -15, 15 )
+polygon = PoolVector2Array( 0, 16, 8, 8, 16, 8, 16, 0, 16, -8, 8, -8, -8, -8, -16, 0, -16, 8 )
+
+[node name="grddetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grddetect"]
+position = Vector2( -15, 15 )
+shape = SubResource( 17 )
+
+[node name="score" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="score"]
+position = Vector2( -15, 15 )
+shape = SubResource( 17 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 3.025
+pitch_scale = 1.1
+
+[node name="grnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="point" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="dies" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="grddetect" to="." method="_on_grddetect_area_entered"]
+[connection signal="area_entered" from="score" to="." method="_on_score_area_entered"]
+[connection signal="area_exited" from="score" to="." method="_on_score_area_exited"]

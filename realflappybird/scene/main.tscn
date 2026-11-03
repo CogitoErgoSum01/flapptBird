@@ -1,0 +1,63 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scene/bird.tscn" type="PackedScene" id=1]
+[ext_resource path="res://pipe.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/spawner.gd" type="Script" id=3]
+[ext_resource path="res://scene/start.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/ground.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scene/gamemanager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scene/ui.tscn" type="PackedScene" id=7]
+[ext_resource path="res://script/bgp.png" type="Texture" id=8]
+[ext_resource path="res://scene/pause.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scene/fade.tscn" type="PackedScene" id=10]
+[ext_resource path="res://sprite/fopreststst.png" type="Texture" id=11]
+
+[node name="main" type="Node2D"]
+
+[node name="bird" parent="." instance=ExtResource( 1 )]
+position = Vector2( 144, 240 )
+
+[node name="pipe" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1064, -8 )
+
+[node name="spawner" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="spawner"]
+wait_time = 1.2
+
+[node name="ground" parent="." instance=ExtResource( 5 )]
+position = Vector2( 120, -856 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 144, 296 )
+current = true
+
+[node name="gamemanager" parent="." instance=ExtResource( 6 )]
+position = Vector2( 16, 56 )
+
+[node name="ui" parent="." instance=ExtResource( 7 )]
+position = Vector2( 128, 400 )
+
+[node name="Bgp" type="Sprite" parent="."]
+position = Vector2( 136, 248 )
+scale = Vector2( 1.22648, 1.16018 )
+z_index = -3
+texture = ExtResource( 8 )
+
+[node name="start" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, -48 )
+
+[node name="pause" parent="." instance=ExtResource( 9 )]
+position = Vector2( 8, 40 )
+
+[node name="fade" parent="." instance=ExtResource( 10 )]
+visible = false
+
+[node name="Fopreststst" type="Sprite" parent="."]
+position = Vector2( 608, 112 )
+scale = Vector2( 0.372396, 0.335295 )
+z_index = -3
+texture = ExtResource( 11 )
+
+[editable path="ui"]
