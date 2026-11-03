@@ -1,1 +1,1 @@
-# flapptBird
+# flappyBird
